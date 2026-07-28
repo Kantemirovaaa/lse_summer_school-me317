@@ -1,0 +1,24 @@
+reject.proportion <- c(
+  daily = mean(jb.daily < 0.05),
+  weekly = mean(jb.weekly < 0.05),
+  monthly = mean(jb.monthly < 0.05),
+  quarterly = mean(jb.quarterly < 0.05)
+)
+
+best.horizon <- names(
+  which.min(reject.proportion)
+)
+
+cat(
+  "The proportion of rejected margins is smallest at the",
+  best.horizon,
+  "horizon.\n"
+)
+
+cat(
+  "Normality improves with aggregation because longer-horizon returns",
+  "are sums of many shorter-horizon returns. By the central limit",
+  "theorem, these sums tend to look more normal, while daily",
+  "idiosyncratic shocks, skewness and extreme observations are averaged",
+  "out.\n"
+)

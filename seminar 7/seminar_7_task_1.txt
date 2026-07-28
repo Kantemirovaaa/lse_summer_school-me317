@@ -1,0 +1,51 @@
+library(QRM)
+library(tseries)
+library(quantmod)
+
+stock.selection <- c(
+  "AAPL", "MSFT", "NVDA", "AMZN", "WMT",
+  "KO", "JNJ", "XOM", "CAT", "DIS"
+)
+
+getSymbols(
+  stock.selection,
+  src = "yahoo",
+  from = "2016-01-01",
+  to = "2026-06-30"
+)
+
+prices <- Ad(get(stock.selection[1]))
+
+for (s in stock.selection[-1]) {
+  prices <- merge(
+    prices,
+    Ad(get(s))
+  )
+}
+
+colnames(prices) <- stock.selection
+prices <- na.omit(prices)
+
+logprices <- log(prices)
+Xts <- na.omit(diff(logprices))
+X <- as.matrix(Xts)
+
+JBTest <- function(dataMatrix) {
+  pvals <- rep(NA, ncol(dataMatrix))
+
+  for (i in 1:ncol(dataMatrix)) {
+    pvals[i] <- jarque.bera.test(
+      dataMatrix[, i]
+    )$p.value
+  }
+
+  names(pvals) <- colnames(dataMatrix)
+
+  return(pvals)
+}
+
+mardia.daily <- MardiaTest(X)
+jb.daily <- JBTest(X)
+
+mardia.daily
+jb.daily
