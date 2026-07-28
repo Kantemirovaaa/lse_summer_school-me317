@@ -1,0 +1,13 @@
+war <- oil_ret["2026-02-28/"]
+
+war_df <- data.frame(
+  date = index(war),
+  ret = as.numeric(war)
+)
+
+top5 <- head(
+  war_df[order(-abs(war_df$ret)), ],
+  5
+)
+
+top5

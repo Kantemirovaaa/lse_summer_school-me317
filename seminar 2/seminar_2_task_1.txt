@@ -1,0 +1,29 @@
+library(quantmod)
+
+getSymbols(
+  "TSLA",
+  src = "yahoo",
+  from = "2023-01-01",
+  to = "2023-12-31"
+)
+
+colnames(TSLA)
+head(Ad(TSLA), 3)
+
+r <- diff(log(Ad(TSLA)))
+r <- as.numeric(na.omit(r))
+
+X <- ifelse(r > 0, 1, ifelse(r < 0, -1, 0))
+
+auto_cov_returns <- cov(
+  r[-1],
+  r[-length(r)]
+)
+
+auto_cov_clipped <- cov(
+  X[-1],
+  X[-length(X)]
+)
+
+auto_cov_returns
+auto_cov_clipped

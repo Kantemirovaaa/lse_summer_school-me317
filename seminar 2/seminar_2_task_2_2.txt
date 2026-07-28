@@ -1,0 +1,1 @@
+oil_ret <- na.omit(diff(log(wti)))

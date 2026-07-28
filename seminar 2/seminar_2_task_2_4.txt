@@ -1,0 +1,7 @@
+calm_sd <- sd(
+  oil_ret["2026-01-02/2026-02-27"]
+)
+
+top5$z <- top5$ret / calm_sd
+
+top5

@@ -1,0 +1,36 @@
+par(
+  mfrow = c(2, 1),
+  mar = c(3, 4, 2, 1)
+)
+
+plot(
+  index(wti),
+  as.numeric(wti),
+  type = "l",
+  xlab = "",
+  ylab = "USD / bbl",
+  main = "WTI crude oil"
+)
+
+abline(
+  v = as.Date("2026-02-28"),
+  col = "red",
+  lty = 2
+)
+
+plot(
+  index(oil_ret),
+  as.numeric(oil_ret),
+  type = "h",
+  xlab = "",
+  ylab = "log-return",
+  main = "WTI daily log-returns"
+)
+
+abline(
+  v = as.Date("2026-02-28"),
+  col = "red",
+  lty = 2
+)
+
+par(mfrow = c(1, 1))
