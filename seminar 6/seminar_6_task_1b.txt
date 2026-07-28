@@ -1,0 +1,41 @@
+vol <- apply(
+  X,
+  2,
+  sd
+)
+
+drop <- which.max(vol)
+
+tickers[drop]
+
+X2 <- X[, -drop]
+
+w2 <- rep(1 / 4, 4)
+
+hs2 <- lo.fn(
+  X2,
+  w2,
+  capital
+)
+
+VaR.hs2 <- as.numeric(
+  quantile(hs2, alpha)
+)
+
+ES.hs2 <- mean(
+  hs2[hs2 > VaR.hs2]
+)
+
+round(
+  rbind(
+    `5 stocks` = c(
+      VaR = VaR.hs,
+      ES = ES.hs
+    ),
+    `4 stocks` = c(
+      VaR = VaR.hs2,
+      ES = ES.hs2
+    )
+  ),
+  1
+)
