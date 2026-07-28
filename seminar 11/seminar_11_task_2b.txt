@@ -1,0 +1,9 @@
+X.weekMax <- apply.weekly(
+  X,
+  max
+)
+
+plot(
+  X.weekMax,
+  main = "NASDAQ weekly maximum losses"
+)

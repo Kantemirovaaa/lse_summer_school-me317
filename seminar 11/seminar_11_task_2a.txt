@@ -1,0 +1,23 @@
+library(quantmod)
+library(QRM)
+
+IXIC <- getSymbols(
+  "^IXIC",
+  src = "yahoo",
+  from = "2005-01-01",
+  to = "2026-06-30",
+  auto.assign = FALSE
+)
+
+prices <- Ad(IXIC)
+
+X <- na.omit(
+  -diff(
+    log(prices)
+  )
+)
+
+plot(
+  X,
+  main = "NASDAQ negative log-returns"
+)

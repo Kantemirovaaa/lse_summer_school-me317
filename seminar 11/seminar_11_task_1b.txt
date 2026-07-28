@@ -1,0 +1,72 @@
+alpha <- 3
+kappa <- 2
+
+pareto_max_cdf <- function(
+  x,
+  n,
+  alpha,
+  kappa
+) {
+  c_n <- kappa *
+    n^(1 / alpha) /
+    alpha
+
+  d_n <- kappa *
+    n^(1 / alpha) -
+    kappa
+
+  z <- c_n * x + d_n
+
+  (
+    1 -
+      (
+        kappa /
+          (kappa + z)
+      )^alpha
+  )^n
+}
+
+frechet_cdf <- function(
+  x,
+  alpha
+) {
+  if (
+    1 + x / alpha <= 0
+  ) {
+    return(0)
+  }
+
+  exp(
+    -(
+      1 + x / alpha
+    )^(-alpha)
+  )
+}
+
+x <- 1
+n_values <- c(
+  10,
+  100,
+  1000,
+  10000
+)
+
+approximation <- sapply(
+  n_values,
+  function(n) {
+    pareto_max_cdf(
+      x,
+      n,
+      alpha,
+      kappa
+    )
+  }
+)
+
+c(
+  approximation,
+  limit = frechet_cdf(
+    x,
+    alpha
+  )
+)

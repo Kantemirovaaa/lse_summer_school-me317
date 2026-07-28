@@ -1,0 +1,42 @@
+beta <- 2
+
+exp_max_cdf <- function(x, n, beta) {
+  c_n <- 1 / beta
+  d_n <- log(n) / beta
+
+  z <- c_n * x + d_n
+
+  (
+    1 - exp(-beta * z)
+  )^n
+}
+
+gumbel_cdf <- function(x) {
+  exp(
+    -exp(-x)
+  )
+}
+
+x <- 1
+n_values <- c(
+  10,
+  100,
+  1000,
+  10000
+)
+
+approximation <- sapply(
+  n_values,
+  function(n) {
+    exp_max_cdf(
+      x,
+      n,
+      beta
+    )
+  }
+)
+
+c(
+  approximation,
+  limit = gumbel_cdf(x)
+)

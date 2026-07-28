@@ -1,0 +1,23 @@
+GEVweek <- fit.GEV(
+  as.numeric(
+    X.weekMax
+  )
+)
+
+GEVweek$par.ests
+GEVweek$par.ses
+
+probability <- 1 - pGEV(
+  q = 0.03,
+  xi = GEVweek$par.ests[1],
+  mu = GEVweek$par.ests[2],
+  sigma = GEVweek$par.ests[3]
+)
+
+average_weeks <- 1 /
+  as.numeric(probability)
+
+c(
+  probability = as.numeric(probability),
+  average_weeks = average_weeks
+)
