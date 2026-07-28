@@ -1,0 +1,27 @@
+library(QRM)
+
+set.seed(202607)
+
+n <- 2000
+tau <- 0.5
+
+theta <- 2 * tau /
+  (1 - tau)
+
+U_clayton <- rcopula.clayton(
+  n,
+  theta = theta,
+  d = 2
+)
+
+X_clayton <- apply(
+  U_clayton,
+  2,
+  qnorm
+)
+
+cor(
+  X_clayton[, 1],
+  X_clayton[, 2],
+  method = "kendall"
+)

@@ -1,0 +1,29 @@
+joint_crash <- function(X, a = 0.05) {
+  q <- apply(
+    X,
+    2,
+    quantile,
+    probs = a
+  )
+
+  mean(
+    X[, 1] < q[1] &
+      X[, 2] < q[2]
+  )
+}
+
+gaussian_probability <- joint_crash(
+  X_gaussian
+)
+
+clayton_probability <- joint_crash(
+  X_clayton
+)
+
+independence_probability <- 0.05^2
+
+c(
+  gaussian = gaussian_probability,
+  clayton = clayton_probability,
+  independence = independence_probability
+)

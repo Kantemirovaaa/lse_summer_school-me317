@@ -1,0 +1,32 @@
+library(QRM)
+
+set.seed(202607)
+
+n <- 2000
+tau <- 0.5
+
+rho <- sin(
+  pi * tau / 2
+)
+
+Sigma <- equicorr(
+  2,
+  rho
+)
+
+U_gaussian <- rcopula.gauss(
+  n,
+  Sigma = Sigma
+)
+
+X_gaussian <- apply(
+  U_gaussian,
+  2,
+  qnorm
+)
+
+cor(
+  X_gaussian[, 1],
+  X_gaussian[, 2],
+  method = "kendall"
+)

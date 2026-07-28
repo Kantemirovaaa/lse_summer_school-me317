@@ -1,0 +1,23 @@
+par(mfrow = c(1, 2))
+
+plot(
+  X_gaussian[, 1],
+  X_gaussian[, 2],
+  main = "Gaussian",
+  xlab = "X1",
+  ylab = "X2",
+  pch = 20,
+  cex = 0.5
+)
+
+plot(
+  X_clayton[, 1],
+  X_clayton[, 2],
+  main = "Clayton",
+  xlab = "X1",
+  ylab = "X2",
+  pch = 20,
+  cex = 0.5
+)
+
+par(mfrow = c(1, 1))

@@ -1,0 +1,18 @@
+lambda_gaussian <- 0
+
+lambda_clayton <- 2^(
+  -1 / theta
+)
+
+c(
+  gaussian_lower_tail_dependence = lambda_gaussian,
+  clayton_lower_tail_dependence = lambda_clayton
+)
+
+cat(
+  "Clayton has a higher joint-crash probability because it has",
+  "positive lower-tail dependence, while the Gaussian copula has",
+  "zero lower-tail dependence. The two copulas have the same",
+  "Kendall's tau, but Kendall's tau measures overall dependence",
+  "and does not determine dependence in the tails.\n"
+)
