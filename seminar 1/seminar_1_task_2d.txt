@@ -1,0 +1,11 @@
+Ruin is highly sensitive to p because the trader's capital follows a random walk between 0 and the target N.
+
+When p = 0.5, there is no drift, so the walk is symmetric. In this case, the probability of ruin is 1 - k / N.
+
+When p is slightly below 0.5, the walk has a negative drift. Each individual step is still close to a fair coin toss, but over many steps the small disadvantage accumulates and makes ruin much more likely.
+
+The exact ruin probability for p != 0.5 depends on
+
+r = (1 - p) / p
+
+and contains the term r^k. Therefore, even a small change in p is amplified by raising r to the power k. For example, changing p from 0.50 to 0.49 increases the ruin probability from 0.50 to about 0.98, while p = 0.10 makes ruin almost certain.

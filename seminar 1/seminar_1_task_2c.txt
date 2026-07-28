@@ -1,0 +1,14 @@
+exact_ruin <- function(k, N, p) {
+  if (p == 0.5) {
+    return(1 - k / N)
+  }
+
+  r <- (1 - p) / p
+  (r^k - r^N) / (1 - r^N)
+}
+
+c(
+  `p = 0.50` = exact_ruin(100, 200, 0.50),
+  `p = 0.49` = exact_ruin(100, 200, 0.49),
+  `p = 0.10` = exact_ruin(100, 200, 0.10)
+)

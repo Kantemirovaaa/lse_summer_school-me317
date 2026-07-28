@@ -1,0 +1,14 @@
+func2 <- function(vec) {
+  n <- length(vec)
+  answer <- matrix(0, nrow = n, ncol = n)
+
+  for (i in 1:n) {
+    for (j in 1:n) {
+      answer[i, j] <- (vec[i] - vec[j])^2
+    }
+  }
+
+  answer
+}
+
+func2(c(1, 3, 6))

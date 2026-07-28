@@ -1,0 +1,11 @@
+simulate_trader <- function(capital, target, p, max_days = 1e6) {
+  days <- 0
+
+  while (capital > 0 && capital < target && days < max_days) {
+    step <- ifelse(runif(1) < p, 1, -1)
+    capital <- capital + step
+    days <- days + 1
+  }
+
+  list(ruined = (capital <= 0), days = days)
+}

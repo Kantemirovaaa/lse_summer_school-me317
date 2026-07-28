@@ -1,0 +1,7 @@
+set.seed(202507)
+
+func1 <- function(n) {
+  matrix(rnorm(n * n), nrow = n, ncol = n)
+}
+
+func1(3)
