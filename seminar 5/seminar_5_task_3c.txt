@@ -1,0 +1,12 @@
+tab <- rbind(
+  VaR_true = VaR_t,
+  VaR_normal = VaR_n,
+  VaR_under_pct = 100 * (VaR_t - VaR_n) / VaR_t,
+  ES_true = ES_t,
+  ES_normal = ES_n,
+  ES_under_pct = 100 * (ES_t - ES_n) / ES_t
+)
+
+colnames(tab) <- paste0("a=", levs)
+
+round(tab, 1)

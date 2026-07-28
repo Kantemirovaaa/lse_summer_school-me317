@@ -1,0 +1,11 @@
+sigma <- 100
+nu <- 4
+levs <- c(0.99, 0.999)
+
+q <- qt(levs, nu)
+
+VaR_t <- sigma * q
+
+ES_t <- sigma *
+  (dt(q, nu) / (1 - levs)) *
+  ((nu + q^2) / (nu - 1))

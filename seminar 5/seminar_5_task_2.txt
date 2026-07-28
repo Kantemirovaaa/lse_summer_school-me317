@@ -1,0 +1,21 @@
+ES_compound_normal <- function(a, n = 1e6) {
+  mu <- runif(n, 0, 1)
+  sigma <- 5 * rbeta(n, 1, 1)
+
+  L <- rnorm(
+    n,
+    mean = mu,
+    sd = sigma
+  )
+
+  VaR <- quantile(L, a)
+
+  c(
+    VaR = as.numeric(VaR),
+    ES = mean(L[L >= VaR])
+  )
+}
+
+set.seed(202607)
+
+ES_compound_normal(0.99)

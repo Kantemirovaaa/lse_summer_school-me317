@@ -1,0 +1,30 @@
+ES_integral <- function(a) {
+  du <- 0.0001
+  u <- seq(a, 1 - du, by = du)
+
+  sum(qnorm(u) * du) / (1 - a)
+}
+
+ES_mc <- function(a, n = 1e6) {
+  L <- rnorm(n)
+
+  mean(L[L >= qnorm(a)])
+}
+
+ES_exact <- function(a) {
+  dnorm(qnorm(a)) / (1 - a)
+}
+
+set.seed(202607)
+
+levs <- c(0.95, 0.99, 0.999)
+
+tab <- rbind(
+  integral = sapply(levs, ES_integral),
+  mc = sapply(levs, ES_mc),
+  exact = sapply(levs, ES_exact)
+)
+
+colnames(tab) <- paste0("a=", levs)
+
+round(tab, 3)

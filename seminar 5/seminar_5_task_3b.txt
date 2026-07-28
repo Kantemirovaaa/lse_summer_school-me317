@@ -1,0 +1,10 @@
+sd_t <- sigma * sqrt(nu / (nu - 2))
+
+VaR_n <- qnorm(
+  levs,
+  sd = sd_t
+)
+
+ES_n <- sd_t *
+  dnorm(qnorm(levs)) /
+  (1 - levs)
