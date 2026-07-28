@@ -1,0 +1,18 @@
+x <- 0.5
+y <- -0.5
+
+joint.theta.zero <- F_theta(
+  x,
+  y,
+  theta = 0
+)
+
+product.of.margins <- F_X(x) * F_Y(y)
+
+joint.theta.zero
+product.of.margins
+
+all.equal(
+  joint.theta.zero,
+  product.of.margins
+)

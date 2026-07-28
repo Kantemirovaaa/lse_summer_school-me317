@@ -1,0 +1,45 @@
+tau <- 1 / 3
+
+theta <- 2 * tau /
+  (1 - tau)
+
+initial.value <- 10000
+threshold.value <- 9000
+
+return.threshold <- log(
+  threshold.value /
+    initial.value
+)
+
+u <- pnorm(
+  return.threshold,
+  mean = 0,
+  sd = 0.1
+)
+
+v <- pnorm(
+  return.threshold,
+  mean = 0,
+  sd = 0.06
+)
+
+clayton_copula <- function(u, v, theta) {
+  (
+    u^(-theta) +
+      v^(-theta) -
+      1
+  )^(-1 / theta)
+}
+
+probability <- clayton_copula(
+  u,
+  v,
+  theta
+)
+
+c(
+  theta = theta,
+  u = u,
+  v = v,
+  probability = probability
+)

@@ -1,0 +1,32 @@
+logistic_quantile <- function(u) {
+  log(
+    u / (1 - u)
+  )
+}
+
+copula_from_joint <- function(u, v) {
+  x <- logistic_quantile(u)
+  y <- logistic_quantile(v)
+
+  F_XY(x, y)
+}
+
+copula_formula <- function(u, v) {
+  u * v /
+    (
+      u +
+        v -
+        u * v
+    )
+}
+
+u <- 0.4
+v <- 0.7
+
+copula_from_joint(u, v)
+copula_formula(u, v)
+
+all.equal(
+  copula_from_joint(u, v),
+  copula_formula(u, v)
+)

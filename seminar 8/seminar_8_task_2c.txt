@@ -1,0 +1,55 @@
+logistic_quantile <- function(u) {
+  log(
+    u / (1 - u)
+  )
+}
+
+copula_from_joint <- function(u, v, theta) {
+  x <- logistic_quantile(u)
+  y <- logistic_quantile(v)
+
+  F_theta(
+    x,
+    y,
+    theta
+  )
+}
+
+copula_formula <- function(u, v, theta) {
+  u * v /
+    (
+      1 -
+        theta *
+        (1 - u) *
+        (1 - v)
+    )
+}
+
+u <- 0.4
+v <- 0.7
+theta <- 0.5
+
+copula_from_joint(
+  u,
+  v,
+  theta
+)
+
+copula_formula(
+  u,
+  v,
+  theta
+)
+
+all.equal(
+  copula_from_joint(
+    u,
+    v,
+    theta
+  ),
+  copula_formula(
+    u,
+    v,
+    theta
+  )
+)

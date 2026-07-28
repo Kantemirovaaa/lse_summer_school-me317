@@ -1,0 +1,27 @@
+F_XY <- function(x, y) {
+  1 / (
+    1 +
+      exp(-x) +
+      exp(-y)
+  )
+}
+
+F_X <- function(x) {
+  1 / (
+    1 +
+      exp(-x)
+  )
+}
+
+F_Y <- function(y) {
+  1 / (
+    1 +
+      exp(-y)
+  )
+}
+
+x <- 0.5
+y <- -0.5
+
+F_X(x)
+F_Y(y)
