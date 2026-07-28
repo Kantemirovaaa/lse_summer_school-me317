@@ -1,0 +1,81 @@
+fit_gaussian <- fit.gausscopula(U)
+
+fit_student <- fit.tcopula(U)
+
+fit_gumbel <- fit.AC(
+  U,
+  "gumbel"
+)
+
+fit_clayton <- fit.AC(
+  U,
+  "clayton"
+)
+
+log_likelihoods <- c(
+  Gaussian = fit_gaussian$ll.max,
+  Student_t = fit_student$ll.max,
+  Gumbel = fit_gumbel$ll.max,
+  Clayton = fit_clayton$ll.max
+)
+
+parameters <- c(
+  Gaussian = 1,
+  Student_t = 2,
+  Gumbel = 1,
+  Clayton = 1
+)
+
+n <- nrow(U)
+
+comparison <- data.frame(
+  copula = names(log_likelihoods),
+  logLik = as.numeric(log_likelihoods),
+  AIC = -2 * log_likelihoods +
+    2 * parameters,
+  BIC = -2 * log_likelihoods +
+    parameters * log(n)
+)
+
+comparison$logLik <- round(
+  comparison$logLik,
+  1
+)
+
+comparison$AIC <- round(
+  comparison$AIC,
+  1
+)
+
+comparison$BIC <- round(
+  comparison$BIC,
+  1
+)
+
+comparison <- comparison[
+  order(comparison$AIC),
+]
+
+comparison
+
+best_copula <- comparison$copula[1]
+
+student_df <- fit_student$nu
+
+LR <- 2 * (
+  fit_student$ll.max -
+    fit_gaussian$ll.max
+)
+
+LR_p_value <- pchisq(
+  LR,
+  df = 1,
+  lower.tail = FALSE
+)
+
+c(
+  best_copula = best_copula,
+  student_df = student_df,
+  LR = LR,
+  LR_p_value = LR_p_value
+)

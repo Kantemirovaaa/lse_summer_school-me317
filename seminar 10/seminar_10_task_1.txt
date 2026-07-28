@@ -1,0 +1,37 @@
+library(QRM)
+library(quantmod)
+
+SPY <- getSymbols(
+  "SPY",
+  src = "yahoo",
+  auto.assign = FALSE
+)
+
+QQQ <- getSymbols(
+  "QQQ",
+  src = "yahoo",
+  auto.assign = FALSE
+)
+
+prices <- na.omit(
+  merge(
+    Ad(SPY),
+    Ad(QQQ)
+  )
+)
+
+returns <- na.omit(
+  diff(
+    log(prices)
+  )
+)
+
+X <- as.matrix(returns)
+
+colnames(X) <- c(
+  "SPY",
+  "QQQ"
+)
+
+head(X)
+nrow(X)

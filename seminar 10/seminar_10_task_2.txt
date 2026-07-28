@@ -1,0 +1,33 @@
+U <- apply(
+  X,
+  2,
+  edf,
+  adjust = 1
+)
+
+plot(
+  U,
+  main = "SPY and QQQ pseudo-copula data",
+  xlab = "SPY",
+  ylab = "QQQ",
+  pch = 20,
+  cex = 0.5
+)
+
+Spearman(U)
+Kendall(U)
+
+lower_tail_probability <- mean(
+  U[, 1] < 0.05 &
+    U[, 2] < 0.05
+)
+
+upper_tail_probability <- mean(
+  U[, 1] > 0.95 &
+    U[, 2] > 0.95
+)
+
+c(
+  lower_tail = lower_tail_probability,
+  upper_tail = upper_tail_probability
+)
