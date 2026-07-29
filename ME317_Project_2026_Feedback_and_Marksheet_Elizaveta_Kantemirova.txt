@@ -1,0 +1,78 @@
+ME317 Project (2026): Feedback & Marksheet
+
+Project: What happened during the COVID-19 pandemic? (25% of the course)
+
+  -------------- -----------------------
+  Student        Elizaveta Kantemirova
+  Date           2026-07-29
+  Overall mark   90 / 100
+  -------------- -----------------------
+
+------------------------------------------------------------------------
+
+Marks
+
+Part A: Content & analysis (60)
+
+  ------------------------------------------------------------------------
+  Criterion              What it assesses                             Mark
+  ---------------------- ------------------------------------ ------------
+  A1. Data set           ≥10 stocks across sectors; source,         9 / 10
+                         structure, and cleaning              
+                         (splits/dividends, NAs, anomalies).  
+
+  A2. Returns, extremes  Price/return dynamics; largest moves      15 / 16
+  & (non-)normality      tied to dated events; skew/kurtosis, 
+                         QQ, formal test, interpreted; sector 
+                         scatterplots.                        
+
+  A3. Portfolio risk &   VaR and ES at 95% & 99% by three          17 / 20
+  backtesting            methods (empirical, normal,          
+                         heavy-tailed); out-of-sample         
+                         backtest; model-risk discussion.     
+
+  A4. Dependence &       Several copulas fitted and compared;      13 / 14
+  copulas                best chosen; tail dependence and why 
+                         joint crashes matter.                
+
+  Part A subtotal                                                  54 / 60
+  ------------------------------------------------------------------------
+
+Part B: Method, interpretation & presentation (40)
+
+  ------------------------------------------------------------------------
+  Criterion              What it assesses                             Mark
+  ---------------------- ------------------------------------ ------------
+  B1. Quantitative       Right methods, correctly applied;         11 / 12
+  rigour                 assumptions checked; uncertainty and 
+                         limitations acknowledged.            
+
+  B2. Description &      Explains what was done and why, so          7 / 8
+  explanation            the reasoning can be followed.       
+
+  B3. Clarity, structure Clear writing; logical structure;           7 / 8
+  & communication        labelled figures/tables; within 8    
+                         pages.                               
+
+  B4. Synthesis &        One coherent story answering “what          6 / 7
+  economic insight       happened”, not four stapled          
+                         exercises.                           
+
+  B5. Reproducibility &  Seed set; code in appendix; runs            5 / 5
+  code                   end-to-end; clean.                   
+
+  Part B subtotal                                                  36 / 40
+  ------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+Comments
+
+An excellent, thorough and insightful report that completes all four
+tasks correctly. The data set, the normality checks (with the biggest
+moves dated to real events), the complete VaR and ES section, and the
+copula work (with a nice check of the joint-crash probabilities against
+what actually happened) are all strong. One thing to note on the risk
+task is the fitted Student-t implying infinite variance (an odd result,
+though honestly flagged). AI use is properly disclosed and the work is
+fully reproducible.
